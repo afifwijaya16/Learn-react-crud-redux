@@ -14,6 +14,9 @@ import {
   Container,
 } from "reactstrap";
 
+// redux
+import { connect } from "react-redux";
+
 const NavbarComponent = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -23,7 +26,7 @@ const NavbarComponent = (props) => {
     <div>
       <Navbar color="light" light expand="md">
         <Container>
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <NavbarBrand href="/">{props.title}</NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
@@ -55,5 +58,9 @@ const NavbarComponent = (props) => {
     </div>
   );
 };
-
-export default NavbarComponent;
+const mapStateToProps = (state) => {
+  return {
+    title: state.users.title,
+  };
+};
+export default connect(mapStateToProps, null)(NavbarComponent);

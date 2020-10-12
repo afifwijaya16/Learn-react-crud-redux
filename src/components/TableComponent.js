@@ -1,8 +1,13 @@
 import React from "react";
+// table
 import BootstrapTable from "react-bootstrap-table-next";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+// pagination
 import paginationFactory from "react-bootstrap-table2-paginator";
-import { Button, Col, Container, Row } from "reactstrap";
+// css table responsive
+import "./TableComponent.css";
+import { Button, ButtonGroup, Col, Container, Row } from "reactstrap";
+//font awesome
 import {
   faEdit,
   faInfo,
@@ -11,6 +16,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+
+// redux
+import { connect } from "react-redux";
 
 const { SearchBar } = Search;
 const columns = [
@@ -28,27 +36,47 @@ const columns = [
     dataField: "nama",
     text: "Nama",
     sort: true,
+    headerStyle: () => {
+      return {
+        width: "20%",
+      };
+    },
   },
   {
     dataField: "alamat",
     text: "Alamat",
     sort: true,
+    headerStyle: () => {
+      return {
+        width: "20%",
+      };
+    },
   },
   {
     dataField: "umur",
     text: "Umur",
     sort: true,
+    headerStyle: () => {
+      return {
+        width: "10%",
+      };
+    },
   },
   {
     dataField: "notelepon",
     text: "No Telepon",
+    headerStyle: () => {
+      return {
+        width: "20%",
+      };
+    },
   },
   {
     dataField: "link",
     text: "Action",
     formatter: (rowContent, row) => {
       return (
-        <div class="btn-group">
+        <ButtonGroup>
           <Link to={"detail/" + row.id}>
             <Button color="dark" size="sm">
               <FontAwesomeIcon icon={faInfo} />
@@ -66,8 +94,13 @@ const columns = [
             <FontAwesomeIcon icon={faTrash} />
             Delete
           </Button>
-        </div>
+        </ButtonGroup>
       );
+    },
+    headerStyle: () => {
+      return {
+        width: "25%",
+      };
     },
   },
 ];
@@ -115,6 +148,8 @@ const TableComponent = (props) => {
 
               <BootstrapTable
                 {...props.baseProps}
+                striped
+                wrapperClasses="table-responsive"
                 pagination={paginationFactory(options)}
               />
             </div>
@@ -125,4 +160,11 @@ const TableComponent = (props) => {
   );
 };
 
-export default TableComponent;
+// data redux mengambil data
+const mapStateToProps = (state) => {
+  return {
+    users: state.users.users,
+  };
+};
+
+export default connect(mapStateToProps, null)(TableComponent);

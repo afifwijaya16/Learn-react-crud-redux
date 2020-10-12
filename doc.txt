@@ -19,3 +19,13 @@ npm install react-bootstrap-table2-paginator --save
 
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'; in index.js
 
+css responsive 
+.react-bootstrap-table table {
+  table-layout: auto !important;
+}
+
+redux 
+
+npm install redux
+npm install react-redux
+npm install redux-thunk
