@@ -6,7 +6,7 @@ import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import paginationFactory from "react-bootstrap-table2-paginator";
 // css table responsive
 import "./TableComponent.css";
-import { Button, ButtonGroup, Col, Container, Row } from "reactstrap";
+import { Button, ButtonGroup, Col, Container, Row, Spinner } from "reactstrap";
 //font awesome
 import {
   faEdit,
@@ -123,38 +123,48 @@ const TableComponent = (props) => {
   return (
     <div>
       <Container>
-        <ToolkitProvider
-          bootstrap4
-          keyField="id"
-          data={props.users}
-          columns={columns}
-          defaultSorted={defaultSorted}
-          search
-        >
-          {(props) => (
-            <div>
-              <Row>
-                <Col>
-                  <Link to={"/create"}>
-                    <Button color="success" size="sm" className="mr-2">
-                      <FontAwesomeIcon icon={faPlus} /> Tambah
-                    </Button>
-                  </Link>
-                </Col>
-              </Row>
-              <div className="float-right">
-                <SearchBar {...props.searchProps} placeholder="Search..." />
-              </div>
+        {props.getUsersList ? (
+          <ToolkitProvider
+            bootstrap4
+            keyField="id"
+            data={props.getUsersList}
+            columns={columns}
+            defaultSorted={defaultSorted}
+            search
+          >
+            {(props) => (
+              <div>
+                <Row>
+                  <Col>
+                    <Link to={"/create"}>
+                      <Button color="success" size="sm" className="mr-2">
+                        <FontAwesomeIcon icon={faPlus} /> Tambah
+                      </Button>
+                    </Link>
+                  </Col>
+                </Row>
+                <div className="float-right">
+                  <SearchBar {...props.searchProps} placeholder="Search..." />
+                </div>
 
-              <BootstrapTable
-                {...props.baseProps}
-                striped
-                wrapperClasses="table-responsive"
-                pagination={paginationFactory(options)}
-              />
-            </div>
-          )}
-        </ToolkitProvider>
+                <BootstrapTable
+                  {...props.baseProps}
+                  striped
+                  wrapperClasses="table-responsive"
+                  pagination={paginationFactory(options)}
+                />
+              </div>
+            )}
+          </ToolkitProvider>
+        ) : (
+          <div className="text-center">
+            {props.errorUsersList ? (
+              <h4>{props.errorUsersList} </h4>
+            ) : (
+              <Spinner color="warning" />
+            )}
+          </div>
+        )}
       </Container>
     </div>
   );
@@ -163,7 +173,8 @@ const TableComponent = (props) => {
 // data redux mengambil data
 const mapStateToProps = (state) => {
   return {
-    users: state.users.users,
+    getUsersList: state.users.getUsersList,
+    errorUsersList: state.users.errorUsersList,
   };
 };
 

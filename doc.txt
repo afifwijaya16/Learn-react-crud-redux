@@ -29,3 +29,24 @@ redux
 npm install redux
 npm install react-redux
 npm install redux-thunk
+
+cara membuat fake-api / fake database
+buat folder dengan dbjson
+lalu buat file di dalam folder dbjson dengan nama db.json 
+format json harus sesuai(tidak boleh salah) misal 
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "hello"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
+https://my-json-server.typicode.com/
+setelah selesai buat github dengan nama bebas/menyesuaikan dengan client
+kemudian push pada repository tersebut
+setalah selesai maka lakukan pengecekan db.json 
+http://my-json-server.typicode.com/afifwijaya16/db-learn-react-crud-redux/users/2
