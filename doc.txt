@@ -1,0 +1,21 @@
+npm install --save bootstrap
+npm install --save reactstrap react react-dom
+
+import 'bootstrap/dist/css/bootstrap.min.css'; in index.js
+
+- set component
+Navbar
+Jumbotron
+
+npm i @fortawesome/react-fontawesome
+npm i --save @fortawesome/fontawesome-svg-core
+npm i --save @fortawesome/free-solid-svg-icons
+npm i --save @fortawesome/react-fontawesome
+
+- table 
+npm install react-bootstrap-table-next --save
+npm install react-bootstrap-table2-toolkit --save
+npm install react-bootstrap-table2-paginator --save
+
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'; in index.js
+
