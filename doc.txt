@@ -30,6 +30,72 @@ npm install redux
 npm install react-redux
 npm install redux-thunk
 
+reducers folder
+
+index.js
+import { combineReducers } from "redux";
+import users from "./users";
+
+export default combineReducers({
+  users,
+});
+
+users reducer merupakan bagian dari reducers folder, users digunakan untuk memanggil action dari folder actions
+
+import { GET_USERS_LIST } from "../actions/userAction";
+
+let initialState = {
+  title: "FJ",
+  getUsersList: false,
+  errorUsersList: false,
+};
+export const users = (state = initialState, action) => {
+  switch (action.type) {
+    case GET_USERS_LIST:
+      return {
+        ...state,
+        getUsersList: action.payload.data,
+        errorUsersList: action.payload.errorMessage,
+      };
+    default:
+      return state;
+  }
+};
+export default users;
+
+actions folder adalah aksi yang akan dilakukan pada reducers
+contoh untuk memanggil data
+import axios from "axios";
+
+export const GET_USERS_LIST = "GET_USERS_LIST";
+
+export const getUsersList = () => {
+  return (dispatch) => {
+    axios
+      .get(
+        "http://my-json-server.typicode.com/afifwijaya16/db-learn-react-crud-redux/users"
+      )
+      .then(function (response) {
+        dispatch({
+          type: GET_USERS_LIST,
+          payload: {
+            data: response.data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch(function (error) {
+        dispatch({
+          type: GET_USERS_LIST,
+          payload: {
+            data: false,
+            errorMessage: error.message,
+          },
+        });
+      });
+  };
+};
+
 cara membuat fake-api / fake database
 buat folder dengan dbjson
 lalu buat file di dalam folder dbjson dengan nama db.json 
@@ -50,3 +116,5 @@ setelah selesai buat github dengan nama bebas/menyesuaikan dengan client
 kemudian push pada repository tersebut
 setalah selesai maka lakukan pengecekan db.json 
 http://my-json-server.typicode.com/afifwijaya16/db-learn-react-crud-redux/users/2
+
+

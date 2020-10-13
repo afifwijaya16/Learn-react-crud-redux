@@ -1,9 +1,11 @@
-import { GET_USERS_LIST } from "../actions/userAction";
+import { GET_USERS_LIST, GET_USERS_DETAIL } from "../actions/userAction";
 
 let initialState = {
   title: "FJ",
   getUsersList: false,
   errorUsersList: false,
+  getUsersDetail: false,
+  errorUsersDetail: false,
 };
 export const users = (state = initialState, action) => {
   switch (action.type) {
@@ -12,6 +14,12 @@ export const users = (state = initialState, action) => {
         ...state,
         getUsersList: action.payload.data,
         errorUsersList: action.payload.errorMessage,
+      };
+    case GET_USERS_DETAIL:
+      return {
+        ...state,
+        getUsersDetail: action.payload.data,
+        errorUsersDetail: action.payload.errorMessage,
       };
     default:
       return state;
