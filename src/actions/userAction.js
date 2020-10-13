@@ -114,6 +114,21 @@ export const postUserCreate = (data) => {
   };
 };
 
+export const deleteUser = (id) => {
+  return (dispatch) => {
+    axios
+      .delete(
+        "http://my-json-server.typicode.com/afifwijaya16/db-learn-react-crud-redux/users/" +
+          id
+      )
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+};
 export const putUserUpdate = (data, id) => {
   return (dispatch) => {
     axios

@@ -33,11 +33,6 @@ const NavbarComponent = (props) => {
               <NavItem>
                 <NavLink href="/components/">Components</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">
-                  GitHub
-                </NavLink>
-              </NavItem>
             </Nav>
             <Nav className="ml-auto" navbar>
               <UncontrolledDropdown nav inNavbar>

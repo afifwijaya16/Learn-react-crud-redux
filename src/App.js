@@ -1,25 +1,24 @@
 import React, { Component } from "react";
-import JumbotronComponent from "./components/JumbotronComponent";
-import NavbarComponent from "./components/NavbarComponent";
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import HomeContainer from "./containers/HomeContainer";
 import CreateUserContainer from "./containers/CreateUserContainer";
 import DetailUserContainer from "./containers/DetailUserContainer";
 import EditUserContainer from "./containers/EditUserContainer";
-
+import NotFoundContainer from "./containers/NotFoundContainer";
 export default class App extends Component {
   render() {
     return (
       <div>
-        <NavbarComponent />
-        <JumbotronComponent />
         <Router>
-          <Route path="/" exact component={HomeContainer} />
-          <Route path="/create" exact component={CreateUserContainer} />
-          <Route path="/detail/:id" exact component={DetailUserContainer} />
-          <Route path="/edit/:id" exact component={EditUserContainer} />
+          <Switch>
+            <Route path="/" exact component={HomeContainer} />
+            <Route path="/create" exact component={CreateUserContainer} />
+            <Route path="/detail/:id" exact component={DetailUserContainer} />
+            <Route path="/edit/:id" exact component={EditUserContainer} />
+            <Route component={NotFoundContainer} />
+          </Switch>
         </Router>
       </div>
     );

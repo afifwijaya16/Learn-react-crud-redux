@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import JumbotronComponent from "../components/JumbotronComponent";
+import NavbarComponent from "../components/NavbarComponent";
 import { connect } from "react-redux";
 import { Container } from "reactstrap";
 import FormComponent from "../components/FormComponent";
@@ -21,10 +23,13 @@ class EditUserContainer extends Component {
           "Nama : " + this.props.getResponDataUser.nama,
           "success"
         );
+        this.props.history.push("/");
       }
     }
     return (
       <div>
+        <NavbarComponent />
+        <JumbotronComponent />
         <Container>
           <h3>Edit User</h3>
           <FormComponent onSubmit={(data) => this.handleSubmit(data)} />

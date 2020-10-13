@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Container } from "reactstrap";
+import JumbotronComponent from "../components/JumbotronComponent";
+import NavbarComponent from "../components/NavbarComponent";
 import BackComponent from "../components/BackComponent";
 import DetailUserComponent from "../components/DetailUserComponent";
 import { connect } from "react-redux";
@@ -12,6 +14,8 @@ class DetailUserContainer extends Component {
   render() {
     return (
       <div>
+        <NavbarComponent />
+        <JumbotronComponent />
         <Container>
           <h3 className="my-1 text-center"> Detail User </h3>
           <DetailUserComponent />
