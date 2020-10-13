@@ -3,11 +3,11 @@ import TableComponent from "../components/TableComponent";
 
 // redux
 import { connect } from "react-redux";
-import { getUsersList, deleteUsersDetail } from "../actions/userAction";
+import { getUsersList, deleteUsersData } from "../actions/userAction";
 class HomeContainer extends Component {
   componentDidMount() {
     this.props.dispatch(getUsersList());
-    this.props.dispatch(deleteUsersDetail());
+    this.props.dispatch(deleteUsersData());
   }
   render() {
     return (
